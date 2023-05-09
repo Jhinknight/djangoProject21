@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+   <!-- chemin vers la page css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Extraction de données</title>
+  <p> <img src="background5.jpg" alt="logo de l'école" width="50" height="60"></p>
+</head>
+
+    <h1>
+        <span style="color: blue;">P</span>
+        <span style="color:teal;">a</span>
+        <span style="color: yellowgreen;">g</span>
+        <span style="color: orange;">e</span>
+        <span style="color: orange;">&nbsp;</span>
+        <span style="color: red">d</span>
+        <span style="color: brown">'</span>
+        <span style="color: blue">e</span>
+        <span style="color: teal">x</span>
+        <span style="color: yellowgreen">t</span>
+        <span style="color: orange">r</span>
+        <span style="color: red;">a</span>
+        <span style="color:brown;">c</span>
+        <span style="color: blue;">t</span>
+        <span style="color: teal;">i</span>
+        <span style="color: yellowgreen">o</span>
+        <span style="color: orange">n</span>
+    </h1>
+
+    <form method='POST'>
+        <input type="file" id="docx_file"/>
+    </form>
+
+    <p><input type="button" class="bouton" value="Appuyez ici" onclick = "validerFormulaire()"/></p>
+
+    <p> <a href="defilement.html"> Retour </a> <br><br> </p>
+    <a href="/">Accueil</a>
+
+</body>
+
+    <script>
+        function validerFormulaire() {
+            var docx_file = document.getElementById("docx_file").value;
+            // Si le champ est rempli, soumettre le formulaire
+            if (docx_file == "") {
+                alert("Veuillez sélectionner un fichier .docx");
+                window.location.href = "word.html";
+            } else {
+				// Redirection vers la nouvelle page
+                window.location.href = "tableauWord.html";
+        }
+    }
+    </script>
+
+</html>

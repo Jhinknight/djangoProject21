@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tableau extrait depuis Word</title>
+</head>
+<body>
+
+
+	{% block content %}
+        <div class="table">
+            <p>{{ html_table|safe }}</p>
+        </div>
+    {% endblock %}
+
+     <p><input type="button" class="bouton" value="Appuyez ici pour afficher le graphique" onclick = "validerFormulaire()"/></p>
+
+    <a href="word.html"> Retour </a><br><br>
+    <a href="/">Revenir à la page d'accueil</a>
+
+</body>
+
+<script>
+    function validerFormulaire() {
+            window.location.href = "graphiqueW.html";
+}
+</script>
+
+</html>
