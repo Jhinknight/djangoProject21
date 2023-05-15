@@ -1,31 +1,44 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fr">
-<head> <meta charset="UTF-8">
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
     <!-- chemin vers la page css -->
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
-    <title>Extractions de données</title>
-    <img src="background4.jpg" alt="marque" width="40" height="40" class="logo">
-    <p> </p>
-    <img src="ESME-logo(2).png" alt="logo de l'école" width="40" height="40" class="esme">
-</head>
-<body>
-<div class="emplacement_total">
-    <div>
-        <section class="pro">
-            <div class="mot">
-                <div> <h1 style="margin-bottom: 10px; line-height: 1;"> REO </h1> </div>
-                <div> <h2 style="margin-bottom: 0; line-height: 1;"> Automatisation </h2> </div>
-                <div> <h3 style="line-height: 0;"> Traitement </h3> </div>
-                <div> <h4 style="margin-top: 0;"> Document </h4> <p> Extraire des informations grâce à l'IA </p> </div>
-                <div> <img src="background1" alt="photo principale" width="750" height="300" class="photo"> </div>
-                <div> <p><a href="defilement.html"> Aller directement à la page d'extraction de données! </a> </p> </div>
-            </div>
-        </section>
+    <title>Extraction de données</title>
+    <div style="text-align: center;">
+        <img src="{% static 'background4.jpg' %}" alt="logo" width="100" height="50">
+        <img src="{% static 'ESME-logo(2).png' %}" width="60" height="60" style="float: right;">
     </div>
-</div>
-<p> </p>
-<iframe id="details" src="defilement.html" width="40" height="30"> </iframe>
+
+    </div>
+
+    <p> </p>
+
+</head>
+
+<body>
+
+    <div style="background-image: url('{% static 'background1.jpg' %}'); float: right; width: 100%; height: 530px;">
+        <div style="background-color: rgb(24, 24, 24); float: left; width: 44%; height: 530px;">
+            <div class="mot">
+                <div> <h1> &nbsp </h1> </div>
+                <div> <h1 style="margin-bottom: 0; line-height: 0.5; color: white; font-family: Helvetica;"> REO </h1> </div>
+                <div> <h1 style="margin-bottom: 0; line-height: 0.5; color: white; font-family: Helvetica;"> Automatisation </h1> </div>
+                <div> <h1 style="margin-bottom: 0;line-height: 0.5; color: white; font-family: Helvetica;"> Traitement </h1> </div>
+                <div> <h1 style="margin-bottom: 0; line-height: 0.5; color: white; font-family: Helvetica;"> Document </h1>
+                <p style="margin-bottom: 0; line-height: 16; color: white;"> Extraire des informations grâce à l'IA </p> </div>
+                <div> <a href="defilement.html" style="margin-bottom: 0; line-height: 0.5; color: greenyellow; font-family: Helvetica;"> Aller directement à la page d'extraction de données !</a> </div>
+                <div> <h1> &nbsp </h1> </div>
+
+            </div>
+        </div>
+    </div>
+
+    <iframe src="{% static 'mon_gabarit.html' %}" height="220" width="100%"> </iframe>
+
 </body>
 
 </html>

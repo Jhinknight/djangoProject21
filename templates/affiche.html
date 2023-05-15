@@ -12,26 +12,28 @@
     <p> <a href="/"> Revenir à la page d'accueil </a> </p>
 
     <p><h1>Voici le(s) tableau(x) extrait(s)</h1></p>
-    <p> L'url saisie est : </p>
 
     <div id="display"></div>
-        <script>
-            var URL = localStorage.getItem("url");
-            document.getElementById("display").innerHTML = URL;
-        </script>
 
     <p>
-    {% if table_data %}
-        <table>
-            {% for row in table_data %}
-                <tr>
-                {% for cell in row %}
-                    <td>{{ cell }}</td>
-                {% endfor %}
-                </tr>
-            {% endfor %}
-        </table>
-    {% endif %}
+    {% if tables %}
+		<h2>Tables found:</h2>
+		{% for table in tables %}
+			<table>
+				{% for row in table %}
+					<tr>
+						{% for cell in row %}
+							{% if forloop.first %}
+								<th>{{ cell }}</th>
+							{% else %}
+								<td>{{ cell }}</td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+		{% endfor %}
+	{% endif %}
     </p>
 
     <p><input type="button" class="bouton" value="Appuyez ici pour afficher le graphique" onclick = "validerFormulaire()"/></p>

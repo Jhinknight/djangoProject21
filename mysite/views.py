@@ -15,154 +15,21 @@ import docx
 import io
 import sqlite3
 
-from flask import request
 
-def home(request):
-    if request.method == 'POST':
-        link = request.POST.get("link")
-        # Récupération du contenu HTML de la page web
-        response = requests.get(link)
-        soup = BeautifulSoup(response.content, 'html.parser')
 
-        # Extraction des tableaux HTML de la page web
-        tables = soup.find_all('table')
-
-        # Affichage des données sous forme de graphique
-        for table in tables:
-            data = []
-            for row in table.find_all('tr'):
-                cols = row.find_all('td')
-                cols = [col.text.strip() for col in cols]
-                data.append(cols)
-            data = np.array(data)
-
-            # Affichage des données sous forme de graphique#
-            x = data[:, 0]
-            y = data[:, 1]
-            try:
-                y = y.astype(float)
-            except ValueError:
-                continue
-
-            plt.bar(x, y)
-            plt.show()
-    else:
-        link = None
-
-    context = {'link': link}
-    return render(request, 'home.html', context)
 
 #url = request.POST.get('url')
 #url = 'https://fr.wikipedia.org/wiki/Liste_des_pays_par_population'
 #url = 'https://fr.wikipedia.org/wiki/Liste_des_villes_par_population'
 #url = 'https://fr.wikipedia.org/wiki/Population_mondiale'
+#url = https://www.mathsisfun.com/data/correlation.html
 
 
-
-# Create your view here.
-def table_view(request):
-    if request.method == 'POST':
-        url = request.POST.get('url')
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # récupère le tableau de la page
-        tables = soup.find_all('table')
-        for table in tables:
-            data = []
-            for row in table.find_all('tr'):
-                cols = row.find_all('td')
-                cols = [col.text.strip() for col in cols]
-                data.append(cols)
-            data = np.array(data)
-
-            # Affichage des données sous forme de graphique#
-            x = data[:, 0]
-            y = data[:, 1]
-            try:
-                y = y.astype(float)
-            except ValueError:
-                continue
-
-            plt.bar(x, y)
-            plt.show()
-    else:
-        link = None
-
-    context = {'url': url}
-    return render(request, 'formulaire.html', context)
-    '''
-        # Initialisation de la liste pour stocker les tableaux
-        table_data = []
-        # récupérer les données du tableau et les stocker dans une liste ou un dictionnaire
-        if table:
-            rows = table.find_all('tr')
-            for row in rows:
-                cells = row.find_all('td')
-                row_data = []
-                for cell in cells:
-                    row_data.append(cell.text.strip())
-                table_data.append(row_data)
-
-        # passer les données au modèle de rendu HTML
-        return render(request, 'affiche.html', table_data=table_data)
-
-        # connexion à la base de données
-        
-        conn = sqlite3.connect('C:/Users/jhink/PycharmProjects/djangoProject2/db.sqlite3')
-        c = conn.cursor()
-        c.execute("""CREATE TABLE IF NOT EXISTS table_data 
-                     (column1 TEXT, column2 TEXT, column3 TEXT)""")
-        
-        for row in table.find_all("tr"):
-            data = []
-            for cell in row.find_all("td"):
-                data.append(cell.text)
-            if len(data) == 3:  # Vérifiez que la ligne a exactement 3 colonnes
-                c.execute("INSERT INTO table_data VALUES (?, ?, ?)", data)
-
-        conn.commit()
-
-        # Requête SQL pour récupérer les données
-        c.execute("SELECT column1, column2, column3 FROM table_data")
-
-        # Stockage des données dans des listes séparées
-        x_data = []
-        y_data = []
-        z_data = []
-
-        for row in c.fetchall():
-            x_data.append(row[0])
-            y_data.append(row[1])
-            z_data.append(row[2])
-
-        # Création du graphique avec Matplotlib
-        fig, ax = plt.subplots()
-        ax.plot(x_data, y_data)
-        ax.set_xlabel('X')
-        ax.set_ylabel('Y')
-        ax.set_title('Mon graphique')
-
-        # Exportation du graphique au format PNG
-        fig.savefig('mon_graphique.png')
-
-        # Fermeture de la connexion à la base de données
-        conn.close()
-        '''
-
-
-
-# Afficher le graphique dans une page Django
-def graph_view(request):
-    return render(request, 'graph.html', {'image_path': 'C:/Users/jhink/OneDrive/Images/image64.png'})
+# Create your views here.
 
 # Create your view here.
 def accueil(request):
     return render(request, "accueil.html")
-
-# Create your view here.
-def formulaire(request):
-    return render(request, "formulaire.html")
 
 # Create your view here.
 def pdf(request):
@@ -176,6 +43,7 @@ def word(request):
 def defilement(request):
     return render(request, "defilement.html")
 
+'''
 def extract_table_from_pdf(file_path, page_num):
     with open(file_path, 'rb') as f:
         pdf = PdfFileReader(f)
@@ -193,8 +61,9 @@ def display_table(request):
     table_data = extract_table_from_pdf("C:/Users/jhink/OneDrive/Bureau/tableau.pdf", 0)
     context = {'table_data': table_data}
     return render(request, 'tableauPDF.html', context)
+'''
 
-# vue qui extrait le tableau du fichier Word et le rend dans un template HTML
+# vue qui extrait le tableau du fichier Word et le renvoie dans un template HTML
 def extract_table(request):
     # Chemin vers le fichier Word contenant le tableau
     filepath = 'C:/Users/jhink/OneDrive/Bureau/tableau.docx'
@@ -279,5 +148,4 @@ def graphiqueW(request):
 
 def graphiqueP(request):
     return render(request, 'graphiqueP.html')
-
 

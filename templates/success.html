@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Graphiques</title>
+</head>
+<body>
+
+	{% if tables %}
+		<h2 style="text-align: center">Table(s) trouvée(s):</h2>
+		{% for table in tables %}
+			<table>
+				{% for row in table %}
+					<tr>
+						{% for cell in row %}
+							{% if forloop.first %}
+								<th>{{ cell }}</th>
+							{% else %}
+								<td>{{ cell }}</td>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</table>
+		{% endfor %}
+	{% endif %}
+
+    <img src="{% static 'histogramme.png'%}" alt="Mon graphique">
+
+</body>
+</html>

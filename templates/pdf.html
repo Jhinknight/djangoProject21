@@ -6,42 +6,43 @@
    <!-- chemin vers la page css -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>Extraction de données</title>
-  <p> <img src="background5.jpg" alt="logo de l'école" width="50" height="60"></p>
 </head>
 
-    <h1>
-        <span style="color: blue;">P</span>
-        <span style="color:teal;">a</span>
-        <span style="color: yellowgreen;">g</span>
-        <span style="color: orange;">e</span>
-        <span style="color: orange;">&nbsp;</span>
-        <span style="color: red">d</span>
-        <span style="color: brown">'</span>
-        <span style="color: blue">e</span>
-        <span style="color: teal">x</span>
-        <span style="color: yellowgreen">t</span>
-        <span style="color: orange">r</span>
-        <span style="color: red;">a</span>
-        <span style="color:brown;">c</span>
-        <span style="color: blue;">t</span>
-        <span style="color: teal;">i</span>
-        <span style="color: yellowgreen">o</span>
-        <span style="color: orange">n</span>
-    </h1>
+    <div style="text-align: center; float: right; width: 100%;">
+        <h1 style="font-size: 100px; margin-top: 300px; line-height: 0.5;">
+            <span style="color: blue;">P</span>
+            <span style="color:teal;">a</span>
+            <span style="color: yellowgreen;">g</span>
+            <span style="color: orange;">e</span>
+            <span style="color: orange;">&nbsp;</span>
+            <span style="color: red">d</span>
+            <span style="color: brown">'</span>
+            <span style="color: blue">e</span>
+            <span style="color: teal">x</span>
+            <span style="color: yellowgreen">t</span>
+            <span style="color: orange">r</span>
+            <span style="color: red;">a</span>
+            <span style="color:brown;">c</span>
+            <span style="color: blue;">t</span>
+            <span style="color: teal;">i</span>
+            <span style="color: yellowgreen">o</span>
+            <span style="color: orange">n</span>
+        </h1>
 
-    <form method='POST'>
-        <input type="file" id="pdf"/>
-    </form>
+        <form method='POST'>
+            {% csrf_token %}
+            <input type="file" id="pdf"/>
+            <button type="submit" onclick = "validerFormulaireP()">Extraire le(s) tableau(x) </button>
+        </form>
 
-    <p><input type="button" class="bouton" value="Appuyez ici" onclick = "validerFormulaire()"/></p>
-
-    <p> <a href="defilement.html"> Retour </a> <br><br> </p>
-    <a href="/">Accueil</a>
+        <p style="line-height: 2px"> <a href="defilement.html"> Retour </a> <br><br> </p>
+        <a href="/">Accueil</a>
+    </div>
 
 </body>
 
     <script>
-        function validerFormulaire() {
+        function validerFormulaireP() {
             // Si le champ est rempli, soumettre le formulaire
             var pdf = document.getElementById("pdf").value;
             if (pdf == "") {
@@ -49,9 +50,9 @@
                 window.location.href = "pdf.html";
             } else {
 				// Redirection vers la nouvelle page
-                window.location.href = "tableauPDF.html";
+                window.location.href = "graphiqueP.html";
+            }
         }
-    }
     </script>
 
 </html>

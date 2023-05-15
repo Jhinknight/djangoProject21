@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableaux</title>
+</head>
+<body>
+    {% for tableau in tableaux %}
+        <table>
+            <thead>
+                <tr>
+                    {% for entete in tableau['entetes'] %}
+                        <th>{{ entete }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for ligne in tableau['donnees'] %}
+                    <tr>
+                        {% for donnee in ligne %}
+                            <td>{{ donnee }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</body>
+</html>

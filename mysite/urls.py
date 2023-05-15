@@ -17,22 +17,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import accueil, pdf, word, defilement, formulaire, table_view, display_table, extract_table, graph_view, graphiqueW, graphiqueP, home
-from . import views
+from .views import accueil, pdf, word, defilement, extract_table, graphiqueW, graphiqueP
+from extraction.views import index, affpdf, copie, formulaire
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", accueil),
     path("defilement.html", defilement),
-    path("formulaire.html", formulaire),
-    path("affiche.html", table_view, name='table'),
     path("pdf.html", pdf),
     path("word.html", word),
-    path("tableauPDF.html", display_table),
     path("tableauWord.html", extract_table),
-    path("graph.html", graph_view),
     path("graphiqueW.html", graphiqueW),
-    path("graphiqueP.html", graphiqueP),
-    path("home.html", home),
-
+    path("success.html", index),
+    path("formulaire.html", formulaire),
+    path("graphiqueP.html", affpdf),
+    path("mon_gabarit.html", copie),
 ]
